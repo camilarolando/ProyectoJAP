@@ -9,16 +9,19 @@
  <link rel="stylesheet" href="login.css">
 
 
+
 </head>
 
 <body>
   <div class="login">
     <h1>Login</h1>
     <form action ="home.html" method = "get">
-    <input class="one" type="email" placeholder="Enter Email..." required>
+    <input class="one" type="email"  id="userName" placeholder="Enter Email..." required>
     <input class="two" type="password" placeholder="Enter Password..." minlenght="8" required>
-    <button type="submit" class="btn">Login</button>
+    <button type="submit" class="btn" id="submitBtn" value="Login" >Login</button>
+    <!–– le doy un id para usarlo en el js ––> 
     </form>
     </div>
   <div class="sup">Don't have an account? <a href="singup.com"> Sing up</a></div>
+  <script src="js/login.js"></script>
 </body>

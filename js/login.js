@@ -3,4 +3,7 @@
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
 
+    document.getElementById("submitBtn").addEventListener("click", function () {
+        localStorage.setItem('userName', document.getElementById('userName').value);
+    });
 });
