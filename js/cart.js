@@ -46,7 +46,7 @@ function getCarrito(url){
     })
     
 }
-
+//uso el que tiene dos productos
 document.addEventListener("DOMContentLoaded", function(e){
 getCarrito("https://japdevdep.github.io/ecommerce-api/cart/654.json")
     .then(respuesta=>{

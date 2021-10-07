@@ -1,5 +1,7 @@
 var comments = [];
 
+//nuevo comentario
+
 function saveComment() {
     let date = new Date();
     let formatDate = date.getDate().toString().padStart(2, '0') + "/" + (date.getMonth() +1).toString().padStart(2, '0') + "/" + date.getFullYear().toString() + "  " + date.getHours() + ":" + date.getMinutes();
@@ -13,6 +15,8 @@ function saveComment() {
     comments.push(comment);
     showComment();
 }
+
+// estrellitas
 
 function drawStars(stars){
 
@@ -28,6 +32,8 @@ function drawStars(stars){
     return html;
 
 }
+
+//muestro los comentarios
 
 function showComment() {
     let html = ""
