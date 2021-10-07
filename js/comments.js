@@ -7,7 +7,7 @@ function saveComment() {
         message: document.getElementById("textarea").value,
         completeDate: formatDate,
         score: document.getElementById("score").value,
-        user: localStorage.getItem("nombreUsuario")
+        user: localStorage.getItem("userName")
     }
 
     comments.push(comment);
@@ -35,7 +35,7 @@ function showComment() {
         let comment = comments[i];
         html += `<div class= "bd-example">
                     <dl>
-                        <dt>${comment.nombreUsuario} - ${comment.completeDate} - ${drawStars(comment.score)}</dt>
+                        <dt>${comment.user} - ${comment.completeDate} - ${drawStars(comment.score)}</dt>
                         <dd>${comment.message}</dd>
                     </dl>
                 </div>`
