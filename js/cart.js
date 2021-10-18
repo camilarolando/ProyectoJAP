@@ -64,7 +64,53 @@ function updateTotal(){
         total += parseInt(iterator.innerHTML);
     }
   
-    document.getElementById("total").innerHTML=total;
+    document.getElementById("Total").innerHTML=total;
+    document.getElementById("NuevoTotal").innerHTML=total;
+
+    // como no puedo hacer funcionar la parte del envío muestro en el total por lo menos lo de los productos
+    document.getElementById("CostoFinal").innerHTML=total;
+
 }
 
 
+/*INTENTO DE HACER FUNCIONAR EL ENVIO no termine pero lo dejo por aca me base en el de sell 
+
+
+function costoEnvío(){
+
+let comissionPercentage = 0.13;
+let MONEY_SYMBOL = "$";
+let DOLLAR_CURRENCY = "Dólares (USD)";
+let PESO_CURRENCY = "Pesos Uruguayos (UYU)";
+let DOLLAR_SYMBOL = "USD ";
+let PESO_SYMBOL = "UYU ";
+let PERCENTAGE_SYMBOL = '%';
+
+    let envioerapidoHTML = document.getElementById("rapido");
+    let envioestandarHTML = document.getElementById("estandar");
+    let enviogratisHTML = document.getElementById("gratis");
+
+    let enviorapido = MONEY_SYMBOL + productCost;
+    let envioestandar = Math.round((comissionPercentage * 100)) + PERCENTAGE_SYMBOL;
+    let enviogratis = MONEY_SYMBOL + (Math.round(productCost * comissionPercentage * 100) / 100);
+
+    envioerapidoHTML.innerHTML = enviorapido;
+    envioestandarHTML.innerHTML = envioestandar;
+    enviogratisHTML.innerHTML = enviogratisToShow;
+
+    document.getElementById("importePorcentual").innerHTML=total;
+
+[]
+    let enviogratis = document.getElementsByClassName("");
+    for (let iterator of subtotales) {
+        total += parseInt(iterator.innerHTML);
+    }
+  
+    document.getElementById("importePorcentual").innerHTML=total;
+}
+
+
+//funcion para que cuando pueda hacer lo del envío se sume el id sería "CostoFinal", de mientras dejo por lo menos lo del producto
+function finalTotal(){
+     document.getElementById("NuevoTotal").innerHTML=total;
+}*/

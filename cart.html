@@ -54,9 +54,9 @@
           </button>
 
           <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-            
-          <a class="dropdown-item" id="userName" href="my-profile.html">Perfil</a> 
-           
+
+            <a class="dropdown-item" id="userName" href="my-profile.html">Perfil</a>
+
             <a class="dropdown-item" href="cart.html"><i class="fas fa-shopping-cart"></i> Mi carrito</a>
             <div class="dropdown-divider"></div>
             <a id="logoutLink" class="dropdown-item" href="index.html">Cerrar sesion</a>
@@ -70,50 +70,162 @@
     </div>
   </nav>
 
+<!--termina el menú desplegable  -->
 
-
+<!--Empieza el contenido especifico de la pag Carrito  -->
 
   <div class="container">
+    <div class="text-center p-4">
+      <h2>Mi Carrito</h2>
+    </div>
+
+    
     <table class="table">
-        <thead>
-          <tr>
-            <th scope="col"></th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Precio</th>
-            <th scope="col">Cantidad</th>
-            <th scope="col">Subtotal</th>
-          </tr>
-        </thead>
-        <tbody id="carrito">
-            
-            
-        </tbody>
-        <tfoot>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th>Total</th>
-          <td class="" id ="Total"></td>
-            
-        </tfoot>
-        </table>
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Cantidad</th>
+          <th scope="col">Subtotal</th>
+        </tr>
+      </thead>
+      <tbody id="carrito">
+
+
+      </tbody>
+      <tfoot>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th>Total</th>
+        <td class="" id="Total"></td>
+
+      </tfoot>
+    </table>
+
+<!-- aca van los controles del envío-->
+<div class="row justify-content-md-center">
+  <div class="col-md-8 order-md-1">
+    <h4 class="mb-3">Tipo de Envío</h4>
+    
+      <div class="d-block my-3">
+        <div class="custom-control custom-radio">
+          <input id="rapido" name="publicationType" type="radio" class="custom-control-input" checked=""
+            required="">
+          <label class="custom-control-label" for="rapido">Llega en el día (15%)</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input id="estandar" name="publicationType" type="radio" class="custom-control-input" required="">
+          <label class="custom-control-label" for="estandar"> Estándar (7%)</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input id="gratis" name="publicationType" type="radio" class="custom-control-input" required="">
+          <label class="custom-control-label" for="gratis"> Retirar en el Local (0%) </label>
+        </div>
+        <div class="row">
+          <button type="button" class="m-1 btn btn-link" data-toggle="modal" data-target="#contidionsModal">Ver
+            condiciones</button>
+        </div>
+      </div>
+
+      <!-- DAtos para el envío-->
+      <div>
+        <h3>Dirección de envío</h3>
+        <form>
+          <div class="needs-validation">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <h5 for="inputCalle">Calle</h5>
+                <input type="text" class="form-control" id="inputCalle" placeholder="Dirección">
+                <div class="invalid-feedback"> Debe ingresar una direccion</div>
+              </div>
+              <div class="form-group col-md-6">
+                <h5 for="inputNumero">Número</h5>
+                <input type="number" class="form-control" id="inputNumero" placeholder="Número de puerta">
+                <div class="invalid-feedback"> Debe ingresar un número de puerta</div>
+              </div>
+
+              <div class="form-group col-md-6">
+                <h5 for="inputEsquina">Esquina</h5>
+                <input type="text" class="form-control" id="inputEsquina" placeholder="Esquina">
+                <div class="invalid-feedback"> Debe ingresar una esquina</div>
+              </div>
+            </div>
+          </div>
+<!-- terminan los datos para el envío-->
+
+<!-- Resumen de compra-->
+          <hr class="mb-4">
+          <h4 class="mb-3">Detalle de costos</h4>
+          <ul class="list-group mb-3">
+
+
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+          
+              <div>
+                <h6 class="my-0">Productos</h6>
+                <small class="text-muted">Suma de todos los productos del carrito</small>
+              </div>
+
+             <span class="text-muted" id="NuevoTotal">$0</span>
+
+            </li>
+
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Costo del envío</h6>
+                <small class="text-muted">Según el tipo de envío</small>
+              </div>
+              <span class="text-muted" id="importePorcentual">-</span>
+            </li>
+
+            </li>
+
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Costo final ($)</span>
+
+              <strong class="" id="CostoFinal">$0</strong>
+
+            </li>
+          </ul>
+
+          <button type="submit" class="btn btn-primary" data-toggle="button" id="BtnEnvioInfo" aria-pressed="false" autocomplete="off">
+            Enviar
+          </button>
+        </form>
+          <!--cartelito de compra con exito-->
+          <div class="alert fade" role="alert" id="alertRes">
+            <span id="resultSp"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+
+        
+      </div>
+    </form>
+  </div>
 </div>
 
 
-  <div id="spinner-wrapper">
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </div>
-  
-  <script src="js/jquery-3.4.1.min.js"></script>
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/dropzone.js"></script>
-  <script src="js/init.js"></script>
-  <script src="js/cart.js"></script>
+
+
+
+      <div id="spinner-wrapper">
+        <div class="lds-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+
+      <script src="js/jquery-3.4.1.min.js"></script>
+      <script src="js/bootstrap.bundle.min.js"></script>
+      <script src="js/dropzone.js"></script>
+      <script src="js/init.js"></script>
+      <script src="js/cart.js"></script>
 </body>
 
 </html>
