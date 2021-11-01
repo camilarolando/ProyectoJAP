@@ -1,8 +1,6 @@
 let productosCarrito=[];
 
 
-
-
 /*función para actualizar el subtotal del producto al modificar la cantidad del mismo*/
 function updateProductoSubtotal(cantidad, costo, id){
     
