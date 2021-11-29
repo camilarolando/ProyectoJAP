@@ -45,7 +45,7 @@ function showProductsList(){
             ((maxCost == undefined) || (maxCost != undefined && parseInt(product.cost) <= maxCost))){
 
             htmlContentToAppend += `
-            <a href="product-info.html" class="list-group-item list-group-item-action col-sm-12 col-md-5 col-lg-5" >
+            <a href="product-info.html" class="col-sm-12 col-md-5 col-lg-5" >
                 
                     
                         <img src="` + product.imgSrc + `" alt="` + product.description + `" class="img-fluid">

@@ -70,16 +70,16 @@
     </div>
   </nav>
 
-<!--termina el menú desplegable  -->
+  <!--termina el menú desplegable  -->
 
-<!--Empieza el contenido especifico de la pag Carrito  -->
+  <!--Empieza el contenido especifico de la pag Carrito  -->
 
   <div class="container">
     <div class="text-center p-4">
       <h2>Mi Carrito</h2>
     </div>
 
-    
+
     <table class="table">
       <thead>
         <tr>
@@ -88,6 +88,7 @@
           <th scope="col">Precio</th>
           <th scope="col">Cantidad</th>
           <th scope="col">Subtotal</th>
+          <th scope="col">Eliminar </th>
         </tr>
       </thead>
       <tbody id="carrito">
@@ -98,134 +99,204 @@
         <th></th>
         <th></th>
         <th></th>
+        <th></th>
         <th>Total</th>
         <td class="" id="Total"></td>
 
       </tfoot>
     </table>
 
-<!-- aca van los controles del envío-->
-<div class="row justify-content-md-center">
-  <div class="col-md-8 order-md-1">
-    <h4 class="mb-3">Tipo de Envío</h4>
-    
-      <div class="d-block my-3">
-        <div class="custom-control custom-radio">
-          <input id="rapido" name="publicationType" type="radio" class="custom-control-input" checked=""
-            required="">
-          <label class="custom-control-label" for="rapido">Llega en el día (15%)</label>
-        </div>
-        <div class="custom-control custom-radio">
-          <input id="estandar" name="publicationType" type="radio" class="custom-control-input" required="">
-          <label class="custom-control-label" for="estandar"> Estándar (7%)</label>
-        </div>
-        <div class="custom-control custom-radio">
-          <input id="gratis" name="publicationType" type="radio" class="custom-control-input" required="">
-          <label class="custom-control-label" for="gratis"> Retirar en el Local (0%) </label>
-        </div>
-        <div class="row">
-          <button type="button" class="m-1 btn btn-link" data-toggle="modal" data-target="#contidionsModal">Ver
-            condiciones</button>
-        </div>
-      </div>
+    <!-- aca van los controles del envío-->
 
-      <!-- DAtos para el envío-->
-      <div>
-        <h3>Dirección de envío</h3>
-        <form>
-          <div class="needs-validation">
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <h5 for="inputCalle">Calle</h5>
-                <input type="text" class="form-control" id="inputCalle" placeholder="Dirección">
-                <div class="invalid-feedback"> Debe ingresar una direccion</div>
-              </div>
-              <div class="form-group col-md-6">
-                <h5 for="inputNumero">Número</h5>
-                <input type="number" class="form-control" id="inputNumero" placeholder="Número de puerta">
-                <div class="invalid-feedback"> Debe ingresar un número de puerta</div>
-              </div>
+    <div class="row justify-content-md-center">
+      <div class="col-md-8 order-md-1">
+        <h4 class="mb-3">Tipo de Envío</h4>
 
-              <div class="form-group col-md-6">
-                <h5 for="inputEsquina">Esquina</h5>
-                <input type="text" class="form-control" id="inputEsquina" placeholder="Esquina">
-                <div class="invalid-feedback"> Debe ingresar una esquina</div>
+        <div class="d-block my-3">
+          <div class="custom-control custom-radio">
+            <input id="premiumradio" name="publicationType" type="radio" class="custom-control-input" checked="" required="">
+            <label class="custom-control-label" for="rapido">Premium (2-5 días)</label>
+          </div>
+
+          <div class="custom-control custom-radio">
+            <input id="expressradio" name="publicationType" type="radio" class="custom-control-input" required="">
+            <label class="custom-control-label" for="estandar"> Express (5-8 días)</label>
+          </div>
+          
+          <div class="custom-control custom-radio">
+            <input id="standardradio" name="publicationType" type="radio" class="custom-control-input" required="">
+            <label class="custom-control-label" for="gratis"> Standard (12 a 15 días) </label>
+          </div>
+
+          <div class="row">
+            <button type="button" class="m-1 btn btn-link" data-toggle="modal" data-target="#contidionsModal">Ver
+              condiciones</button>
+          </div>
+        </div>
+
+        <!-- aca va el modal-->
+        <div class="modal fade" tabindex="-1" role="dialog" id="contidionsModal">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Tipo de Envío</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="container">
+                  <div class="row">
+                    <h5 class="text-warning">Premium (2-5 días)</h5>
+                  </div>
+                  <div>
+                    <h6>Costo del 15% sobre el subtotal</h6>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <h5 class="text-primary">Express (5-8 días)</h5>
+                  </div>
+                  <div>
+                    <h6>Costo del 7% sobre el subtotal</h6>
+                  </div>
+
+                  <hr>
+                  <div class="row">
+                    <h5 class="text-secondary">Standard (12 a 15 días)</h5>
+                  </div>
+                  <div>
+                    <h6>Costo del 5% sobre el subtotal</h6>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
               </div>
             </div>
           </div>
-<!-- terminan los datos para el envío-->
+        </div>
 
-<!-- Resumen de compra-->
-          <hr class="mb-4">
-          <h4 class="mb-3">Detalle de costos</h4>
-          <ul class="list-group mb-3">
+        <!-- termina el modal-->
+
+        <!-- Datos para el envío-->
+        <div>
+          <h3>Dirección de envío</h3>
+          <form>
+            <div class="needs-validation">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <h5 for="inputCalle">Calle</h5>
+                  <input type="text" class="form-control" id="inputCalle" placeholder="Dirección">
+                  <div class="invalid-feedback"> Debe ingresar una direccion</div>
+                </div>
+                <div class="form-group col-md-6">
+                  <h5 for="inputNumero">Número</h5>
+                  <input type="number" class="form-control" id="inputNumero" placeholder="Número de puerta">
+                  <div class="invalid-feedback"> Debe ingresar un número de puerta</div>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <h5 for="inputEsquina">Esquina</h5>
+                  <input type="text" class="form-control" id="inputEsquina" placeholder="Esquina">
+                  <div class="invalid-feedback"> Debe ingresar una esquina</div>
+                </div>
+              </div>
+            </div>
+            <!-- terminan los datos para el envío-->
 
 
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-          
-              <div>
-                <h6 class="my-0">Productos</h6>
-                <small class="text-muted">Suma de todos los productos del carrito</small>
+
+            <!-- metodo de pago-->
+            <hr class="mb-4">
+            <h4 class="mb-3">Método de Pago</h4>
+            <div class="d-block my-3">
+              <div class="custom-control custom-radio">
+                <input id="tdcradio" name="paymentType" type="radio" class="custom-control-input" checked=""
+                  required="">
+                <label class="custom-control-label" for="tdc">Tarjeta de Crédito</label>
               </div>
 
-             <span class="text-muted" id="NuevoTotal">$0</span>
-
-            </li>
-
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Costo del envío</h6>
-                <small class="text-muted">Según el tipo de envío</small>
+              <div class="custom-control custom-radio">
+                <input id="tansfbancariaradio" name="paymentType" type="radio" class="custom-control-input" checked=""
+                  required="">
+                <label class="custom-control-label" for="tansfbancaria">Transferencia Bancaria</label>
               </div>
-              <span class="text-muted" id="importePorcentual">-</span>
-            </li>
+            </div>
+        </div>
 
-            </li>
+        <!-- Resumen de compra-->
+        <hr class="mb-4">
+        <h4 class="mb-3">Detalle de costos</h4>
+        <ul class="list-group mb-3">
 
-            <li class="list-group-item d-flex justify-content-between">
-              <span>Costo final ($)</span>
 
-              <strong class="" id="CostoFinal">$0</strong>
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
 
-            </li>
-          </ul>
+            <div>
+              <h6 class="my-0">Productos</h6>
+              <small class="text-muted">Suma de todos los productos del carrito</small>
+            </div>
+            <span class="text-muted" id="NuevoTotal">$0</span>
+          </li>
 
-          <button type="submit" class="btn btn-primary" data-toggle="button" id="BtnEnvioInfo" aria-pressed="false" autocomplete="off">
-            Enviar
-          </button>
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+              <h6 class="my-0">Costo del envío</h6>
+              <small class="text-muted">Según el tipo de envío</small>
+            </div>
+            <span class="text-muted" id="importePorcentual">-</span>
+          </li>
+
+          </li>
+
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Costo final ($)</span>
+
+            <strong class="" id="CostoFinal">$0</strong>
+
+          </li>
+        </ul>
+
+        <button type="submit" class="btn btn-primary" data-toggle="button" id="finalizarCompra" aria-pressed="false"
+          autocomplete="off">
+          Finalizar compra
+        </button>
         </form>
-          <!--cartelito de compra con exito-->
-          <div class="alert fade" role="alert" id="alertRes">
-            <span id="resultSp"></span>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">×</span>
-            </button>
+
+
+
+        <!--cartelito de compra con exito-->
+        <div class="alert fade" role="alert" id="alertRes">
+          <span id="resultSp"></span>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
         </div>
 
-        
+
       </div>
-    </form>
+      </form>
+    </div>
   </div>
-</div>
 
 
 
 
 
-      <div id="spinner-wrapper">
-        <div class="lds-ring">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-      </div>
+  <div id="spinner-wrapper">
+    <div class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
 
-      <script src="js/jquery-3.4.1.min.js"></script>
-      <script src="js/bootstrap.bundle.min.js"></script>
-      <script src="js/dropzone.js"></script>
-      <script src="js/init.js"></script>
-      <script src="js/cart.js"></script>
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/dropzone.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/cart.js"></script>
 </body>
 
 </html>

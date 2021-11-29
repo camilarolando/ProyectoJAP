@@ -1,114 +1,194 @@
-let productosCarrito=[];
+let productosCarrito = [];
+let importePorcentual = [];
 
-
-/*función para actualizar el subtotal del producto al modificar la cantidad del mismo*/
-function updateProductoSubtotal(cantidad, costo, id){
-    
-   document.getElementById(id).innerHTML = cantidad*costo;
-   updateTotal();
+/*función para actualizar el subtotal de los productos al modificar las cantidades de los mismos*/
+function updateProductoSubtotal(cantidad, costo, id) {
+  document.getElementById(id).innerHTML = cantidad * costo;
+  updateTotal();
 }
 
-/*función showCarrito para que aparece el subtotal del producto en base a la cantidad y precio unitario*/
-function showCarrito(){
-    let index = 0;
-    /*se muestran los productos del carrito con el input correspondiente a la cantidad*/
-    let htmlToAppend = "";
-    for(let article of productosCarrito){
-        index++;
-        id=index;
-        let subtotal = parseInt(article.count) * parseInt(article.unitCost);
-        htmlToAppend += `
+/*función showCarrito para que aparezca el subtotal del producto en base a la cantidad y precio unitario*/
+function showCarrito() {
+  let index = 0;
+  /*se muestran los productos del carrito con el input correspondiente a la cantidad*/
+  let htmlToAppend = "";
+  for (let article of productosCarrito) {
+    index++;
+    id = index;
+    let subtotal = parseInt(article.count) * parseInt(article.unitCost);
+    htmlToAppend += `
         <tr>
         <td><img src="${article.src}" class = "img-fluid" style ="max-width:50px!important"></td>
         <td class="align-middle">${article.name}</td>
         <td class="align-middle">${article.currency} ${article.unitCost}</td>
         <td class="align-middle"><input type="number"  min ="1" value=${article.count}  onChange="updateProductoSubtotal(this.value, ${article.unitCost},${id})"></td>
         <td  id="${id}" class="subtotal align-middle">${subtotal}</td>
-        </tr>`
-                        
-                       
-       
-    }
-    document.getElementById("carrito").innerHTML = htmlToAppend;
 
 
+
+        <td><button id="btnEliminar" class="btn btn-danger btn-sm rounded-0"  type="button" data-toggle="tooltip" data-placement="top" title="Eliminar" onclick="borrar(${article}); productosCarrito(carrito); costoEnvio(tasaDeEnvio)">
+      <article class="fa fa-trash"></article></button>
+      </td>
+        </tr>`;
+  }
+  document.getElementById("carrito").innerHTML = htmlToAppend;
 }
 
-
-
-function getCarrito(url){
-    
-    return fetch(url)
-    .then(respuesta=>{
-        return respuesta.json();
-    })
-    
+function getCarrito(url) {
+  return fetch(url).then((respuesta) => {
+    return respuesta.json();
+  });
 }
+
 //uso el que tiene dos productos
-document.addEventListener("DOMContentLoaded", function(e){
-getCarrito("https://japdevdep.github.io/ecommerce-api/cart/654.json")
-    .then(respuesta=>{
-        productosCarrito = respuesta.articles;
-        showCarrito();
-        updateTotal()
-    })
-})
-
-
-function updateTotal(){
-    let total = 0;
-    let subtotales = document.getElementsByClassName("subtotal");
-    for (let iterator of subtotales) {
-        total += parseInt(iterator.innerHTML);
+document.addEventListener("DOMContentLoaded", function (e) {
+  getCarrito("https://japdevdep.github.io/ecommerce-api/cart/654.json").then(
+    (respuesta) => {
+      productosCarrito = respuesta.articles;
+      showCarrito();
+      updateTotal();
+      finalTotal()
+      
     }
+  );
+});
+
+
+function updateTotal() {
+  let total = 0;
+  let subtotales = document.getElementsByClassName("subtotal");
+  for (let iterator of subtotales) {
+    total += parseInt(iterator.innerHTML);
+  }
+
+  document.getElementById("Total").innerHTML = total;
   
-    document.getElementById("Total").innerHTML=total;
-    document.getElementById("NuevoTotal").innerHTML=total;
-
-    // como no puedo hacer funcionar la parte del envío muestro en el total por lo menos lo de los productos
-    document.getElementById("CostoFinal").innerHTML=total;
-
-}
-
-
-/*INTENTO DE HACER FUNCIONAR EL ENVIO no termine pero lo dejo por aca me base en el de sell 
-
-
-function costoEnvío(){
-
-let comissionPercentage = 0.13;
-let MONEY_SYMBOL = "$";
-let DOLLAR_CURRENCY = "Dólares (USD)";
-let PESO_CURRENCY = "Pesos Uruguayos (UYU)";
-let DOLLAR_SYMBOL = "USD ";
-let PESO_SYMBOL = "UYU ";
-let PERCENTAGE_SYMBOL = '%';
-
-    let envioerapidoHTML = document.getElementById("rapido");
-    let envioestandarHTML = document.getElementById("estandar");
-    let enviogratisHTML = document.getElementById("gratis");
-
-    let enviorapido = MONEY_SYMBOL + productCost;
-    let envioestandar = Math.round((comissionPercentage * 100)) + PERCENTAGE_SYMBOL;
-    let enviogratis = MONEY_SYMBOL + (Math.round(productCost * comissionPercentage * 100) / 100);
-
-    envioerapidoHTML.innerHTML = enviorapido;
-    envioestandarHTML.innerHTML = envioestandar;
-    enviogratisHTML.innerHTML = enviogratisToShow;
-
-    document.getElementById("importePorcentual").innerHTML=total;
-
-[]
-    let enviogratis = document.getElementsByClassName("");
-    for (let iterator of subtotales) {
-        total += parseInt(iterator.innerHTML);
-    }
+  document.getElementById("NuevoTotal").innerHTML = total;
   
-    document.getElementById("importePorcentual").innerHTML=total;
 }
-
 
 //funcion para que cuando pueda hacer lo del envío se sume el id sería "CostoFinal", de mientras dejo por lo menos lo del producto
 function finalTotal(){
-     document.getElementById("NuevoTotal").innerHTML=total;
-}*/
+  document.getElementById("NuevoTotal").innerHTML=total;
+}
+
+
+ /*funcion para que cuando pueda hacer lo del envío se sume el id sería "CostoFinal", de mientras dejo por lo menos lo del producto
+ function finalTotal() {
+  let total = 0;
+  let totales = document.getElementsByClassName("Total");
+  for (let iterator of totales) {
+    total += parseInt(iterator.innerHTML);
+  }
+  document.getElementById("importePorcentual").innerHTML = total;
+  }
+
+
+function costoEnvío() {
+  let envioerpremiumHTML = document.getElementById("premium");
+  let envioexpressHTML = document.getElementById("express");
+  let enviostandardHTML = document.getElementById("standard");
+
+  envioerpremiumHTML.innerHTML = enviopremium;
+  envioexpressHTML.innerHTML = envioexpress;
+  enviostandardHTML.innerHTML = enviostandard;
+
+  document.getElementById("importePorcentual").innerHTML = total;
+}
+*/
+
+
+
+document.addEventListener("DOMContentLoaded", function (e) {
+ 
+
+  document
+  .getElementById("premiumadio")
+  .addEventListener("change", () => {
+      importePorcentual = 0.15;
+      updateTotalCosts();
+    });
+
+  document
+    .getElementById("expressdradio")
+    .addEventListener("change", function () {
+      importePorcentual = 0.07;
+      updateTotalCosts();
+    });
+
+  document
+    .getElementById("standardradio")
+    .addEventListener("change", function () {
+      importePorcentual = 0.05;
+      updateTotalCosts();
+    });
+
+  });
+
+ 
+
+
+
+
+  
+
+  //Se agrega una escucha en el evento 'submit' que será
+  //lanzado por el formulario cuando se seleccione 'Vender'.
+document.addEventListener("finalizarCompra", function (e) {
+    let inputCalle = document.getElementById("productName");
+    let inputNumero = document.getElementById("inputNumero");
+    let inputEsquina = document.getElementById("inputEsquinaInput");
+    let infoMissing = false;
+
+    //Quito las clases que marcan como inválidos
+    inputCalle.classList.remove("is-invalid");
+    inputNumero.classList.remove("is-invalid");
+    inputEsquina.classList.remove("is-invalid");
+
+    //Se realizan los controles necesarios,
+    //En este caso se controla que se haya ingresado el nombre y categoría.
+    //Consulto por el nombre del producto
+    if (inputCalle.value === "") {
+      inputCalle.classList.add("is-invalid");
+      infoMissing = true;
+    }
+
+    //Consulto por el numero
+    if (inputNumero.value === "") {
+      inputNumero.classList.add("is-invalid");
+      infoMissing = true;
+    }
+
+    //Consulto por la esquina
+    if (inputEsquina.value <= "") {
+      inputEsquina.classList.add("is-invalid");
+      infoMissing = true;
+    }
+
+    if (!infoMissing) {
+      //Aquí ingresa si pasó los controles, irá a enviar
+      //la solicitud para crear la publicación.
+
+      getJSONData(CART_BUY_URL).then(function (resultObj) {
+        let msgToShowHTML = document.getElementById("resultSpan");
+        let msgToShow = "";
+
+        //Si la publicación fue exitosa, devolverá mensaje de éxito,
+        //de lo contrario, devolverá mensaje de error.
+        if (resultObj.status === "ok") {
+          msgToShow = resultObj.data.msg;
+          document.getElementById("alertResult").classList.add("alert-success");
+        } else if (resultObj.status === "error") {
+          msgToShow = ERROR_MSG;
+          document.getElementById("alertResult").classList.add("alert-danger");
+        }
+
+        msgToShowHTML.innerHTML = msgToShow;
+        document.getElementById("alertResult").classList.add("show");
+      });
+    }
+
+    //Esto se debe realizar para prevenir que el formulario se envíe (comportamiento por defecto del navegador)
+    if (e.preventDefault) e.preventDefault();
+    return false;
+  });
